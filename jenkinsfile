@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                // Build your application (e.g., compile code)
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Test your application
+                sh 'mvn test'
+            }
+        }
+        stage('Containerize') {
+            steps {
+                // Build Docker image
+                sh 'docker build -t myapp .'
+            }
+        }
+    }
+}
